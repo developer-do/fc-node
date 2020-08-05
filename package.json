@@ -1,0 +1,20 @@
+{
+  "name": "fc-node",
+  "version": "1.0.0",
+  "description": "### node.js 란?",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/developer-do/fc-node.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/developer-do/fc-node/issues"
+  },
+  "homepage": "https://github.com/developer-do/fc-node#readme"
+}
