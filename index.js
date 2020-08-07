@@ -1,12 +1,9 @@
-var http = require('http');
+const http = require("http");
 
-http.createServer(function (request, response) {
-    response.writeHead(200, {'content-Type' : 'text/plain'});
-    response.write('Hello Nodejs122222');
+http
+  .createServer((request, response) => {
+    response.writeHead(200, { "Content-Type": "text/plain" }); // 문서를 어떻게 지정해 주겠다.
+    response.write("Hello Server");
     response.end();
-}).listen(3000);
-
-const Myvar = require('./myvar');
-const setVar = new Myvar();
-
-console.log(setVar);
+  })
+  .listen(3000);
