@@ -1,0 +1,23 @@
+{
+  "name": "fc-node",
+  "version": "1.0.0",
+  "description": "- 웹 브라우저에서 쓰이는 자바스크립트를 서버에서 사용가능하게 만든것 ( 자바스크립트 문법 서버에서 사용 가능 )\r - 무엇이 가능하게 했나?\r   - V8의 탑재로 인해서\r - V8 이란?\r   - 크롬에 탑재된 자바스크립트 엔진이다.\r - 대용량 서비스를 위해 Ryan Lienhart Dahl 이 개발\r - 출처 https://ko.wikipedia.org/wiki/Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/developer-do/fc-node.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/developer-do/fc-node/issues"
+  },
+  "homepage": "https://github.com/developer-do/fc-node#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
