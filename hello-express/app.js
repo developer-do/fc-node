@@ -18,6 +18,8 @@ nunjucks.configure("template", {
   express: app, // express 객체 app 변수 대입
 });
 
+// !! middleware !!
+
 // 미들웨어 셋팅 start
 app.use(morgan("dev"));
 // 미들웨어 셋팅 end
@@ -29,6 +31,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //   req.body = {};
 // });
 // bodyParser 설정 end
+
+// 정적 파일
+/**
+ * 첫번째 인자 url
+ * 두번째 인자 폴더명
+ */
+app.use("/static", express.static("uploads"));
+
+// !! middleware !!
 
 const vipMiddleware = (req, res, next) => {
   console.log("important first middleware");
