@@ -1,6 +1,7 @@
 const express = require("express");
 const nunjucks = require("nunjucks");
-const morgan = require("morgan");
+const morgan = require("morgan"); // middleware
+const bodyParser = require("body-parser"); // middleware express 내장 모듈
 
 const admin = require("./routes/admin");
 const contacts = require("./routes/contacts");
@@ -17,8 +18,17 @@ nunjucks.configure("template", {
   express: app, // express 객체 app 변수 대입
 });
 
-// 미들웨어 셋팅
+// 미들웨어 셋팅 start
 app.use(morgan("dev"));
+// 미들웨어 셋팅 end
+
+// bodyParser 설정 start
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+// app.use((req, res, next) => {
+//   req.body = {};
+// });
+// bodyParser 설정 end
 
 const vipMiddleware = (req, res, next) => {
   console.log("important first middleware");
