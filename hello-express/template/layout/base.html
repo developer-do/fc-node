@@ -9,7 +9,18 @@
 </head>
 <body>
   <div class="container" style="padding-top: 100px;">
-    {% block content %}{% endblock %}
+    <!-- 로그인 여부 start -->
+    {% if isLogin %}
+      로그인 중
+    {% else %}
+      로그인이 필요합니다.
+    {% endif %}
+    <!-- 로그인 여부 end -->
+
+    <!-- container start -->
+    {% block content %}
+    {% endblock %}
+    <!-- container end -->
   </div>
 </body>
 </html>
