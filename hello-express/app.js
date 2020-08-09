@@ -1,5 +1,7 @@
 const express = require("express");
 const nunjucks = require("nunjucks");
+const morgan = require("morgan");
+
 const admin = require("./routes/admin");
 const contacts = require("./routes/contacts");
 
@@ -15,7 +17,15 @@ nunjucks.configure("template", {
   express: app, // express 객체 app 변수 대입
 });
 
-app.use("/admin", admin);
+// 미들웨어 셋팅
+app.use(morgan("dev"));
+
+const vipMiddleware = (req, res, next) => {
+  console.log("important first middleware");
+  next();
+};
+
+app.use("/admin", vipMiddleware, admin);
 app.use("/contacts", contacts);
 
 app.get("/", (req, res) => {

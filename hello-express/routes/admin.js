@@ -1,7 +1,25 @@
 const express = require("express");
 const router = express.Router();
 
-router.get("/", (req, res) => {
+const testMiddleware = (req, res, next) => {
+  console.log("first middleware");
+  next();
+};
+
+const testMiddleware2 = (req, res, next) => {
+  console.log("second middleware");
+  next();
+};
+
+const loginRequired = (req, res, next) => {
+  if ("로그인이 되어 있으면") {
+    res.redirect("로그인 창으로");
+  } else {
+    next();
+  }
+};
+
+router.get("/", testMiddleware, testMiddleware2, (req, res) => {
   res.send("admin 이후 url");
 });
 
