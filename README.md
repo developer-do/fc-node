@@ -38,3 +38,11 @@
 - 3XX => 리다이렉션
 - 4XX => 요청오류 (ex 404 Not Found)
 - 5XX => 서버오류
+
+### REST API
+
+- GET /users => 사용자정보
+- POST /users => 사용자추가
+- GET /users/(ID) => 한명만 볼때
+- PUT /users/(ID) => 한명 수정하기
+- DELETE /users/(ID) => 한명 삭제하기
