@@ -11,8 +11,8 @@ const port = 3000;
  * 두번째 인자 객체 옵션
  */
 nunjucks.configure("template", {
-  autoescape: true,
-  express: app,
+  autoescape: true, // html 태그를 문자열처럼 출력하게 도와주는 역할
+  express: app, // express 객체 app 변수 대입
 });
 
 app.use("/admin", admin);
