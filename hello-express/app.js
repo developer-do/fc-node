@@ -1,15 +1,19 @@
 const express = require("express");
 
+const admin = require("./routes/admin");
+const contacts = require("./routes/contacts");
+
 const app = express();
 const port = 3000;
 
+app.use("/admin", admin);
+app.use("/contacts", contacts);
+
 app.get("/", (req, res) => {
-  console.log(req);
-  res.send("hello express");
+  res.send("hello express13212313321321");
 });
 
 app.get("/fastcampus", (req, res) => {
-  console.log(req);
   res.send("fastcampus get222223333333333");
 });
 
