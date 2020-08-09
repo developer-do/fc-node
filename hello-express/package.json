@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx nodemon app.js",
-    "dev": "npx nodemon app.js"
+    "start": "npx nodemon -e js,html app.js",
+    "dev": "npx nodemon -e js,html app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "nunjucks": "^3.2.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"

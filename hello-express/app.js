@@ -1,10 +1,19 @@
 const express = require("express");
-
+const nunjucks = require("nunjucks");
 const admin = require("./routes/admin");
 const contacts = require("./routes/contacts");
 
 const app = express();
 const port = 3000;
+
+/**
+ * 첫번째 인자 폴더
+ * 두번째 인자 객체 옵션
+ */
+nunjucks.configure("template", {
+  autoescape: true,
+  express: app,
+});
 
 app.use("/admin", admin);
 app.use("/contacts", contacts);
