@@ -53,3 +53,15 @@
 - controllers/admin/index.js ( admin url + middleware )
 - controllers/admin/admin.ctrl.js ( 컨트롤러 역할 )
 - server는 server만 뜨는 역할
+
+### dotenv 설정
+
+- npm install dotenv
+- .env.sample 파일 생성
+- .env 파일에 DB 정보를 넣고
+  - process.env.DATABASE
+  - process.env.DB_USER
+  - process.env.DB_PASSWORD
+  - process.env.DB_HOST
+  - 로 어디든 가능
+  - env는 환경변수 설정
