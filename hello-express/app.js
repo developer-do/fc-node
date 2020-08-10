@@ -52,6 +52,12 @@ const vipMiddleware = (req, res, next) => {
 };
 
 app.use("/admin", vipMiddleware, admin);
+app.use((req, res, _) => {
+  res.status(400).render("common/404.html");
+});
+app.use((req, res, _) => {
+  res.status(500).render("common/500.html");
+});
 app.use("/contacts", contacts);
 
 app.get("/", (req, res) => {
