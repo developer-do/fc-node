@@ -3,72 +3,75 @@ const nunjucks = require("nunjucks");
 const morgan = require("morgan"); // middleware
 const bodyParser = require("body-parser"); // middleware express 내장 모듈
 
-const admin = require("./routes/admin");
-const contacts = require("./routes/contacts");
+class App {
+  constructor() {
+    this.app = express();
 
-const app = express();
-const port = 3000;
+    // 뷰엔진 셋팅
+    this.setViewEngine();
 
-/**
- * 첫번째 인자 폴더
- * 두번째 인자 객체 옵션
- */
-nunjucks.configure("template", {
-  autoescape: true, // html 태그를 문자열처럼 출력하게 도와주는 역할
-  express: app, // express 객체 app 변수 대입
-});
+    // 미들웨어 셋팅
+    this.setMiddleWare();
 
-// !! middleware !!
+    // 정적 디렉터리 추가
+    this.setStatic();
 
-// 미들웨어 셋팅 start
-app.use(morgan("dev"));
-// 미들웨어 셋팅 end
+    // 로컬 변수
+    this.setLocals();
 
-// bodyParser 설정 start
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-// app.use((req, res, next) => {
-//   req.body = {};
-// });
-// bodyParser 설정 end
+    // 라우팅
+    this.getRouting();
 
-// 정적 파일
-/**
- * 첫번째 인자 url
- * 두번째 인자 폴더명
- */
-app.use("/static", express.static("uploads"));
+    // 404 - 페이지를 찾을수가 없음
+    this.status404();
 
-// 로그인 여부 확인하기
-app.use((req, res, next) => {
-  app.locals.isLogin = false;
-  app.locals.reqPath = req.path;
-  next();
-});
-// !! middleware !!
+    // 에러처리
+    this.errorHandler();
+  }
 
-const vipMiddleware = (req, res, next) => {
-  console.log("important first middleware");
-  next();
-};
+  setMiddleWare() {
+    // 미들웨어 셋팅
+    this.app.use(morgan("dev"));
+    this.app.use(bodyParser.json());
+    this.app.use(bodyParser.urlencoded({ extended: false }));
+  }
 
-app.use("/admin", vipMiddleware, admin);
-app.use((req, res, _) => {
-  res.status(400).render("common/404.html");
-});
-app.use((req, res, _) => {
-  res.status(500).render("common/500.html");
-});
-app.use("/contacts", contacts);
+  setViewEngine() {
+    nunjucks.configure("template", {
+      autoescape: true,
+      express: this.app,
+    });
+  }
 
-app.get("/", (req, res) => {
-  res.send("hello express13212313321321");
-});
+  setStatic() {
+    this.app.use("/uploads", express.static("uploads"));
+  }
 
-app.get("/fastcampus", (req, res) => {
-  res.send("fastcampus get222223333333333");
-});
+  setLocals() {
+    // 템플릿 변수
+    this.app.use((req, res, next) => {
+      this.app.locals.isLogin = true;
+      this.app.locals.reqPath = req.path;
+      next();
+    });
+  }
 
-app.listen(port, () => {
-  console.log("Express listening on port", port);
-});
+  getRouting() {
+    this.app.use(require("./controllers"));
+  }
+
+  status404() {
+    this.app.use((req, res, _) => {
+      res.status(404).render("common/404.html");
+    });
+  }
+
+  errorHandler() {
+    this.app.use((err, req, res, _) => {
+      console.log(err);
+      res.status(500).render("common/500.html");
+    });
+  }
+}
+
+module.exports = new App().app;

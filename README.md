@@ -46,3 +46,10 @@
 - GET /users/(ID) => 한명만 볼때
 - PUT /users/(ID) => 한명 수정하기
 - DELETE /users/(ID) => 한명 삭제하기
+
+### Express 권장구조
+
+- controllers/index ( 대분류 url + 폴더 위치 )
+- controllers/admin/index.js ( admin url + middleware )
+- controllers/admin/admin.ctrl.js ( 컨트롤러 역할 )
+- server는 server만 뜨는 역할
