@@ -42,6 +42,7 @@ app.use("/static", express.static("uploads"));
 // 로그인 여부 확인하기
 app.use((req, res, next) => {
   app.locals.isLogin = false;
+  app.locals.reqPath = req.path;
   next();
 });
 // !! middleware !!
